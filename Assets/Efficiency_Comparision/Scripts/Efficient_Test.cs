@@ -2,21 +2,21 @@
 
 public class Efficient_Test : MonoBehaviour
 {
-    private string A;
-    private string B;
-    private GameObject obj;
+    private string _a;
+    private string _b;
+    private GameObject _obj;
 
     void Start()
     {
-        obj = gameObject;
+        _obj = gameObject;
         Efficienct_Comparison.Efficiency.Compare(GoGoA, GoGoB, 100000);
     }
 
     public void GoGoA() {
-        A = gameObject.name;
+        _a = gameObject.name;
     }
 
     public void GoGoB() {
-        B = obj.name;
+        _b = _obj.name;
     }
 }

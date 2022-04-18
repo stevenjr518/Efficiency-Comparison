@@ -6,59 +6,59 @@ namespace Efficienct_Comparison
     public class Efficiency 
     {
         public delegate void MethodA();
-        public static MethodA methodA;
+        public static MethodA s_MethodA;
         public delegate void MethodB();
-        public static MethodB methodB;
+        public static MethodB s_MethodB;
 
         /// <summary>
         ///   <para>Compare two methods given by you and tell you which one is faster.</para>
         /// </summary>
-        /// <param name="A">The first method.</param>
-        /// <param name="B">The second method.</param>
+        /// <param name="a">The first method.</param>
+        /// <param name="b">The second method.</param>
         /// <param name="times">The running times of each method.</param>
-        public static void Compare(MethodA A, MethodB B, int times) 
+        public static void Compare(MethodA a, MethodB b, int times) 
         {
 #if UNITY_EDITOR
-            TimeSpan A_Elapsted_Time;
-            TimeSpan B_Elapsted_Time;
-            if (A != null)
+            TimeSpan a_Elapsted_Time;
+            TimeSpan b_Elapsted_Time;
+            if (a != null)
             {
                 //Run A
-                methodA += A;
-                DateTime A_Start = DateTime.Now;
+                s_MethodA += a;
+                DateTime a_Start = DateTime.Now;
                 for (int i = 0; i <= times; ++i)
                 {
-                    methodA();
+                    s_MethodA();
                 }
-                DateTime A_End = DateTime.Now;
-                A_Elapsted_Time = A_End - A_Start;
-                Debug.Log("MethodA Spent " + A_Elapsted_Time);
-                methodA -= A;
+                DateTime a_End = DateTime.Now;
+                a_Elapsted_Time = a_End - a_Start;
+                Debug.Log("MethodA Spent " + a_Elapsted_Time);
+                s_MethodA -= a;
             }
 
-            if (B != null)
+            if (b != null)
             {
                 //Run B
-                methodB += B;
-                DateTime B_Start = DateTime.Now;
+                s_MethodB += b;
+                DateTime b_Start = DateTime.Now;
                 for (int i = 0; i <= times; ++i)
                 {
-                    methodB();
+                    s_MethodB();
                 }
-                DateTime B_End = DateTime.Now;
-                B_Elapsted_Time = B_End - B_Start;
-                Debug.Log("MethodB Spent " + B_Elapsted_Time);
-                methodB -= B;
+                DateTime b_End = DateTime.Now;
+                b_Elapsted_Time = b_End - b_Start;
+                Debug.Log("MethodB Spent " + b_Elapsted_Time);
+                s_MethodB -= b;
             }
 
-            if (A != null && B != null)
+            if (a != null && b != null)
             {
                 //Comparison
-                if (A_Elapsted_Time > B_Elapsted_Time)
+                if (a_Elapsted_Time > b_Elapsted_Time)
                 {
                     Debug.Log("Method B is faster");
                 }
-                else if (A_Elapsted_Time < B_Elapsted_Time)
+                else if (a_Elapsted_Time < b_Elapsted_Time)
                 {
                     Debug.Log("Method A is faster");
                 }
