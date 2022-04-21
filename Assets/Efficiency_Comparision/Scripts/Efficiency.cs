@@ -5,10 +5,9 @@ namespace Efficienct_Comparison
 {
     public class Efficiency 
     {
-        public delegate void MethodA();
-        public static MethodA s_MethodA;
-        public delegate void MethodB();
-        public static MethodB s_MethodB;
+        public delegate void Method();
+        public static Method MethodA;
+        public static Method MethodB;
 
         /// <summary>
         ///   <para>Compare two methods given by you and tell you which one is faster.</para>
@@ -16,7 +15,7 @@ namespace Efficienct_Comparison
         /// <param name="a">The first method.</param>
         /// <param name="b">The second method.</param>
         /// <param name="times">The running times of each method.</param>
-        public static void Compare(MethodA a, MethodB b, int times) 
+        public static void Compare(Method a, Method b, int times) 
         {
 #if UNITY_EDITOR
             TimeSpan a_Elapsted_Time;
@@ -24,31 +23,31 @@ namespace Efficienct_Comparison
             if (a != null)
             {
                 //Run A
-                s_MethodA += a;
+                MethodA += a;
                 DateTime a_Start = DateTime.Now;
                 for (int i = 0; i <= times; ++i)
                 {
-                    s_MethodA();
+                    MethodA();
                 }
                 DateTime a_End = DateTime.Now;
                 a_Elapsted_Time = a_End - a_Start;
                 Debug.Log("MethodA Spent " + a_Elapsted_Time);
-                s_MethodA -= a;
+                MethodA -= a;
             }
 
             if (b != null)
             {
                 //Run B
-                s_MethodB += b;
+                MethodB += b;
                 DateTime b_Start = DateTime.Now;
                 for (int i = 0; i <= times; ++i)
                 {
-                    s_MethodB();
+                    MethodB();
                 }
                 DateTime b_End = DateTime.Now;
                 b_Elapsted_Time = b_End - b_Start;
                 Debug.Log("MethodB Spent " + b_Elapsted_Time);
-                s_MethodB -= b;
+                MethodB -= b;
             }
 
             if (a != null && b != null)
